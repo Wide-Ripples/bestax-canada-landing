@@ -38,29 +38,30 @@ const faqs = [
 ];
 
 export default function FaqAccordion() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <div className="space-y-2">
+    <div className="border-t border-gray-200">
       {faqs.map((faq, i) => (
-        <div key={i} className="border border-gray-200 rounded-xl overflow-hidden">
+        <div key={i} className={`border-b border-gray-200 transition-colors ${open === i ? "bg-[#FFF9F5]" : ""}`}>
           <button
             onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-center justify-between px-6 py-4 text-left font-semibold text-[#4A4A4A] hover:bg-orange-50 transition-colors"
+            className="w-full flex items-center justify-between px-6 py-6 text-left gap-6"
             aria-expanded={open === i}
           >
-            <span>{faq.q}</span>
-            <svg
-              className={`w-5 h-5 shrink-0 ml-4 text-[#F5A623] transition-transform duration-200 ${open === i ? "rotate-180" : ""}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+            <span className="text-[17px] sm:text-lg font-bold text-[#1a1a1a] leading-snug">
+              {faq.q}
+            </span>
+            <span
+              className={`shrink-0 w-9 h-9 rounded-full flex items-center justify-center text-white text-xl font-bold leading-none transition-colors ${
+                open === i ? "bg-[#E84319]" : "bg-[#1a1a1a]"
+              }`}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
+              {open === i ? "−" : "+"}
+            </span>
           </button>
           {open === i && (
-            <div className="px-6 pb-5 pt-3 text-[#4A4A4A] text-sm leading-relaxed border-t border-gray-100">
+            <div className="px-6 pb-7 text-gray-600 text-[15px] sm:text-base leading-relaxed">
               {faq.a}
             </div>
           )}

@@ -61,7 +61,7 @@ export default function Page() {
 
         {/* Headline — centered text, generous width */}
         <div className="text-center mb-7">
-          <h1 className="text-[2rem] sm:text-[2.5rem] font-extrabold text-[#1a1a1a] leading-tight mb-3">
+          <h1 className="text-[2.4rem] sm:text-[3rem] lg:text-[3.5rem] font-black text-[#1a1a1a] leading-[1.1] mb-3">
             Stop Losing Money to Messy Books,{" "}
             <span className="text-[#E84319]">Missed Deadlines</span>,{" "}
             and CRA Surprises
@@ -90,17 +90,17 @@ export default function Page() {
                 { num: "1,000+", label: "Clients" },
                 { num: "$427K",  label: "Avoided" },
               ].map((s) => (
-                <div key={s.label} className="bg-[#1a1a1a] rounded-xl py-3.5 text-center">
-                  <div className="text-xl font-extrabold text-[#F5A623]">{s.num}</div>
-                  <div className="text-gray-400 text-[11px] mt-0.5">{s.label}</div>
+                <div key={s.label} className="bg-[#1a1a1a] rounded-xl py-4 text-center">
+                  <div className="text-2xl sm:text-3xl font-black text-[#F5A623]">{s.num}</div>
+                  <div className="text-gray-400 text-[13px] mt-1">{s.label}</div>
                 </div>
               ))}
             </div>
 
             {/* Pain points */}
             <div className="bg-[#FFF9F5] border border-[#F5A623]/30 rounded-2xl px-5 py-5">
-              <p className="text-xs font-bold text-[#E84319] mb-3">This is for you if...</p>
-              <ul className="grid sm:grid-cols-2 gap-2.5">
+              <p className="text-sm font-bold text-[#E84319] mb-3">This is for you if...</p>
+              <ul className="grid sm:grid-cols-2 gap-3">
                 {[
                   "Books are behind or inconsistent",
                   "Unsure about GST/HST filings",
@@ -109,28 +109,28 @@ export default function Page() {
                   "Accountant is reactive, not proactive",
                   "Need one firm for everything",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
+                  <li key={item} className="flex items-start gap-2 text-[15px] text-gray-700">
                     <Check red />
                     {item}
                   </li>
                 ))}
               </ul>
-              <p className="text-xs text-gray-500 mt-3 font-medium">
+              <p className="text-sm text-gray-500 mt-3 font-medium">
                 If any of these sound familiar, start with a free 20-minute call.
               </p>
             </div>
 
             {/* What you get */}
             <div className="bg-[#F0FDF4] border border-green-200 rounded-2xl px-5 py-5">
-              <p className="text-xs font-bold text-green-700 mb-3">On the free call, Bestax will:</p>
-              <ul className="space-y-2.5">
+              <p className="text-sm font-bold text-green-700 mb-3">On the free call, Bestax will:</p>
+              <ul className="space-y-3">
                 {[
                   "Review your current accounting setup",
                   "Spot compliance or reporting gaps before CRA does",
                   "Highlight tax-saving opportunities you are missing",
                   "Give you a concrete next-step action plan",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-gray-700">
+                  <li key={item} className="flex items-start gap-2 text-[15px] text-gray-700">
                     <Check />
                     {item}
                   </li>
@@ -183,10 +183,10 @@ export default function Page() {
 
       {/* ── $427K BANNER ───────────────────────────────────── */}
       <div className="bg-[#E84319] py-10 px-6 lg:px-10 text-center">
-        <p className="text-white/70 text-xs font-semibold mb-2">Proven results for Canadian businesses</p>
-        <p className="text-5xl font-extrabold text-white mb-1">$427,000</p>
-        <p className="text-white text-base font-semibold">in CRA penalties and interest avoided for our clients</p>
-        <p className="text-white/60 text-sm mt-1">Through accurate filings, proactive planning, and on-time submissions.</p>
+        <p className="text-white/70 text-sm font-semibold mb-3 tracking-widest uppercase">Proven results for Canadian businesses</p>
+        <p className="text-[72px] sm:text-[90px] font-black text-white leading-none mb-2">$427,000</p>
+        <p className="text-white text-lg sm:text-xl font-bold">in CRA penalties and interest avoided for our clients</p>
+        <p className="text-white/60 text-[15px] mt-2">Through accurate filings, proactive planning, and on-time submissions.</p>
       </div>
 
       {/* ── TESTIMONIALS ───────────────────────────────────── */}
@@ -196,7 +196,7 @@ export default function Page() {
             <Stars />
             <span className="text-sm font-bold text-[#333]">5.0 on Google</span>
           </div>
-          <h2 className="text-2xl font-extrabold italic text-[#1a1a1a]">
+          <h2 className="text-3xl sm:text-4xl font-black italic text-[#1a1a1a]">
             Here&apos;s What Real Business Owners Say About Us:
           </h2>
         </div>
@@ -226,11 +226,11 @@ export default function Page() {
 
       {/* ── DARK URGENCY CLOSER ────────────────────────────── */}
       <section className="bg-[#1a1a1a] py-14 px-6 lg:px-10 text-center">
-        <p className="text-gray-500 text-xs font-semibold mb-3">Don&apos;t wait until there&apos;s a problem</p>
-        <h2 className="text-3xl font-extrabold text-white mb-4">
+        <p className="text-gray-500 text-sm font-semibold mb-3 tracking-widest uppercase">Don&apos;t wait until there&apos;s a problem</p>
+        <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
           Most Business Owners Act Too Late.
         </h2>
-        <p className="text-gray-400 text-base max-w-md mx-auto mb-8">
+        <p className="text-gray-300 text-lg max-w-lg mx-auto mb-8">
           By the time CRA sends a notice, penalties are already stacking up. A 20-minute call now can save you thousands later.
         </p>
         <Btn href="#booking" red>Claim My Free Spot Now</Btn>
@@ -240,8 +240,8 @@ export default function Page() {
       {/* ── FAQ ────────────────────────────────────────────── */}
       <section className="w-full px-6 lg:px-10 py-14">
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-extrabold text-[#1a1a1a]">Frequently Asked Questions</h2>
-          <p className="text-gray-500 text-base mt-2">Still have questions? These are the ones we hear most often.</p>
+          <h2 className="text-3xl sm:text-4xl font-black text-[#1a1a1a]">Frequently Asked Questions</h2>
+          <p className="text-gray-500 text-lg mt-2">Still have questions? These are the ones we hear most often.</p>
         </div>
         <FaqAccordion />
         <div className="text-center mt-10">
