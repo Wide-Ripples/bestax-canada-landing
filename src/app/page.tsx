@@ -4,6 +4,7 @@ import VideoPlayer from "@/components/VideoPlayer";
 import BookingEmbed from "@/components/BookingEmbed";
 import FaqAccordion from "@/components/FaqAccordion";
 import MobileBookingBar from "@/components/MobileBookingBar";
+import ScrollToTop from "@/components/ScrollToTop";
 
 function Stars() {
   return (
@@ -77,7 +78,7 @@ export default function Page() {
         <div className="grid lg:grid-cols-[1fr_460px] gap-7 items-start">
 
           {/* LEFT: Video + trust cards */}
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-5 min-w-0 max-w-[900px]">
 
             <VideoPlayer />
 
@@ -278,6 +279,7 @@ export default function Page() {
       </footer>
 
       <MobileBookingBar />
+      <ScrollToTop />
     </div>
   );
 }

@@ -15,7 +15,6 @@ export default function VideoPlayer() {
   return (
     <div
       className="relative w-full rounded-xl overflow-hidden shadow-xl cursor-pointer"
-      style={{ maxHeight: 440 }}
       onClick={toggleMute}
     >
       <video
@@ -25,8 +24,7 @@ export default function VideoPlayer() {
         muted
         loop
         playsInline
-        className="w-full object-cover"
-        style={{ maxHeight: 440 }}
+        className="w-full h-auto block"
       />
 
       {/* Centered overlay — matches the WordPress design */}
