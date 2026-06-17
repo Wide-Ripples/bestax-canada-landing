@@ -78,7 +78,7 @@ export default function Page() {
         <div className="grid lg:grid-cols-[1fr_460px] gap-7 items-start">
 
           {/* LEFT: Video + trust cards */}
-          <div className="flex flex-col gap-5 min-w-0 max-w-[900px]">
+          <div className="flex flex-col gap-5 min-w-0">
 
             <VideoPlayer />
 
