@@ -21,7 +21,7 @@ function Stars() {
 function Check({ red = false }: { red?: boolean }) {
   return (
     <svg
-      className={`w-4 h-4 shrink-0 mt-0.5 ${red ? "text-[#E84319]" : "text-green-600"}`}
+      className={`w-5 h-5 shrink-0 mt-0.5 ${red ? "text-[#E84319]" : "text-green-600"}`}
       fill="currentColor" viewBox="0 0 20 20"
     >
       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -98,9 +98,9 @@ export default function Page() {
             </div>
 
             {/* Pain points */}
-            <div className="bg-[#FFF9F5] border border-[#F5A623]/30 rounded-2xl px-5 py-5">
-              <p className="text-sm font-bold text-[#E84319] mb-3">This is for you if...</p>
-              <ul className="grid sm:grid-cols-2 gap-3">
+            <div className="bg-[#FFF9F5] border border-[#F5A623]/30 rounded-2xl px-6 py-6">
+              <p className="text-base font-bold text-[#E84319] mb-4">This is for you if...</p>
+              <ul className="grid sm:grid-cols-2 gap-4">
                 {[
                   "Books are behind or inconsistent",
                   "Unsure about GST/HST filings",
@@ -109,28 +109,28 @@ export default function Page() {
                   "Accountant is reactive, not proactive",
                   "Need one firm for everything",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-[15px] text-gray-700">
+                  <li key={item} className="flex items-start gap-2.5 text-[17px] font-medium text-gray-700">
                     <Check red />
                     {item}
                   </li>
                 ))}
               </ul>
-              <p className="text-sm text-gray-500 mt-3 font-medium">
+              <p className="text-[15px] text-gray-500 mt-4 font-medium">
                 If any of these sound familiar, start with a free 20-minute call.
               </p>
             </div>
 
             {/* What you get */}
-            <div className="bg-[#F0FDF4] border border-green-200 rounded-2xl px-5 py-5">
-              <p className="text-sm font-bold text-green-700 mb-3">On the free call, Bestax will:</p>
-              <ul className="space-y-3">
+            <div className="bg-[#F0FDF4] border border-green-200 rounded-2xl px-6 py-6">
+              <p className="text-base font-bold text-green-700 mb-4">On the free call, Bestax will:</p>
+              <ul className="space-y-4">
                 {[
                   "Review your current accounting setup",
                   "Spot compliance or reporting gaps before CRA does",
                   "Highlight tax-saving opportunities you are missing",
                   "Give you a concrete next-step action plan",
                 ].map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-[15px] text-gray-700">
+                  <li key={item} className="flex items-start gap-2.5 text-[17px] font-medium text-gray-700">
                     <Check />
                     {item}
                   </li>
