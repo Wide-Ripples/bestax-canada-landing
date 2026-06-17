@@ -57,11 +57,11 @@ export default function Page() {
       {/* ══════════════════════════════════════════════════════
           HERO — full width, video left · booking right
       ══════════════════════════════════════════════════════ */}
-      <section className="w-full px-6 lg:px-10 pt-8 pb-10">
+      <section className="w-full px-6 lg:px-10 pt-4 sm:pt-8 pb-10">
 
         {/* Headline — centered text, generous width */}
-        <div className="text-center mb-7">
-          <h1 className="text-[2.4rem] sm:text-[3rem] lg:text-[3.5rem] font-black text-[#1a1a1a] leading-[1.1] mb-3">
+        <div className="text-center mb-4 sm:mb-7">
+          <h1 className="text-[1.75rem] sm:text-[3rem] lg:text-[3.5rem] font-black text-[#1a1a1a] leading-[1.15] mb-3">
             Stop Losing Money to Messy Books,{" "}
             <span className="text-[#E84319]">Missed Deadlines</span>,{" "}
             and CRA Surprises
@@ -83,12 +83,12 @@ export default function Page() {
             <VideoPlayer />
 
             {/* Stats */}
-            <div className="grid grid-cols-4 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
               {[
-                { num: "10+",    label: "Years" },
+                { num: "10+",    label: "Years of Experience" },
                 { num: "35+",    label: "Professionals" },
-                { num: "1,000+", label: "Clients" },
-                { num: "$427K",  label: "Avoided" },
+                { num: "1,000+", label: "Clients Served" },
+                { num: "$427K",  label: "Penalties Avoided" },
               ].map((s) => (
                 <div key={s.label} className="bg-[#1a1a1a] rounded-xl py-4 text-center">
                   <div className="text-2xl sm:text-3xl font-black text-[#F5A623]">{s.num}</div>
@@ -141,7 +141,7 @@ export default function Page() {
           </div>
 
           {/* RIGHT: Booking card (sticky) */}
-          <div id="booking" className="lg:sticky lg:top-[88px] scroll-mt-[88px]">
+          <div id="booking" className="lg:sticky lg:top-[72px] scroll-mt-[72px]">
             <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100">
 
               <div className="bg-[#E84319] px-5 py-4">

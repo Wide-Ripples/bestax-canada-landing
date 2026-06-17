@@ -3,14 +3,14 @@ import Image from "next/image";
 export default function StickyHeader() {
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
-      <div className="w-full px-6 lg:px-10 py-3 flex items-center justify-between gap-4">
+      <div className="w-full px-4 sm:px-6 lg:px-10 py-2 sm:py-3 flex items-center justify-between gap-3">
         <Image
           src="/assets/Logo/bestax-canada-logo without background.png"
           alt="Bestax Accountants Canada"
           width={200}
           height={75}
           priority
-          className="h-16 w-auto object-contain"
+          className="h-10 sm:h-16 w-auto object-contain"
         />
 
         <a
@@ -25,7 +25,7 @@ export default function StickyHeader() {
 
         <a
           href="#booking"
-          className="bg-[#E84319] hover:bg-[#c73a14] text-white font-bold px-6 py-3 rounded-full transition-colors shadow text-[15px]"
+          className="bg-[#E84319] hover:bg-[#c73a14] text-white font-bold px-4 sm:px-6 py-2 sm:py-3 rounded-full transition-colors shadow text-sm sm:text-[15px]"
         >
           Book Free Call
         </a>
