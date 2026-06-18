@@ -48,14 +48,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  if (!process.env.ANTHROPIC_API_KEY) {
+  // Strip BOM and whitespace that PowerShell piping can inject
+  const apiKey = (process.env.ANTHROPIC_API_KEY ?? "").replace(/^﻿/, "").trim();
+  if (!apiKey) {
     return NextResponse.json(
       { error: "ANTHROPIC_API_KEY is not configured. Please add it in Vercel environment variables." },
       { status: 500 }
     );
   }
 
-  const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
+  const anthropic = new Anthropic({ apiKey });
 
   try {
     const { messages, imageBase64, imageType } = await req.json() as {
