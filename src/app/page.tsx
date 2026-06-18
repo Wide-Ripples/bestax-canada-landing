@@ -65,8 +65,8 @@ export default function Page() {
           {/* LEFT: Headline + Video + trust cards */}
           <div className="flex flex-col gap-5 min-w-0">
 
-            {/* Headline lives here — only above the video, not full width */}
-            <div className="mb-1">
+            {/* Headline — centered above the video */}
+            <div className="text-center mb-1">
               <h1 className="text-[1.75rem] sm:text-[2.6rem] lg:text-[3rem] font-black text-[#1a1a1a] leading-[1.15] mb-3">
                 Stop Losing Money to Messy Books,{" "}
                 <span className="text-[#E84319]">Missed Deadlines</span>,{" "}
