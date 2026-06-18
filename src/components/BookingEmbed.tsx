@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 declare global {
   interface Window {
@@ -10,17 +10,33 @@ declare global {
   }
 }
 
+// 60px desktop header + ~68px card red header + 2px border buffer
+const DESKTOP_CHROME = 130;
+const MOBILE_HEIGHT = 555;
+
+function getIframeHeight() {
+  if (typeof window === "undefined") return MOBILE_HEIGHT;
+  if (window.innerWidth < 1024) return MOBILE_HEIGHT;
+  return Math.max(480, window.innerHeight - DESKTOP_CHROME);
+}
+
 export default function BookingEmbed() {
   const containerRef = useRef<HTMLDivElement>(null);
   const loadedRef = useRef(false);
+  const [containerHeight, setContainerHeight] = useState(MOBILE_HEIGHT);
+
+  useEffect(() => {
+    // Set initial height and track resize
+    const update = () => setContainerHeight(getIframeHeight());
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, []);
 
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
 
-    // Trigger loading: defer via requestIdleCallback so NimbusPop's heavy JS
-    // doesn't block the main thread during initial paint (fixes desktop TBT).
-    // Falls back to a 2.5s setTimeout on browsers without requestIdleCallback.
     const scheduleLoad = () => {
       if (loadedRef.current) return;
       loadedRef.current = true;
@@ -31,8 +47,6 @@ export default function BookingEmbed() {
       }
     };
 
-    // Still use IntersectionObserver so on mobile (where embed is below fold)
-    // we don't even schedule until user scrolls near it.
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -47,15 +61,15 @@ export default function BookingEmbed() {
   }, []);
 
   function loadNimbus() {
+    const height = getIframeHeight();
     const init = () => {
       if (window.Bookings) {
         window.Bookings.inlineEmbed({
           url: "https://appointments.bestax.ca/portal-embed#/inquiry",
           parent: "#inline-container",
-          height: "555px",
+          height: `${height}px`,
           width: "100%",
         });
-        // Poll for the iframe NimbusPop creates and add accessible title
         const poll = setInterval(() => {
           const iframe = document.querySelector("#inline-container iframe") as HTMLIFrameElement | null;
           if (iframe) {
@@ -77,7 +91,7 @@ export default function BookingEmbed() {
   }
 
   return (
-    <div ref={containerRef} className="w-full" style={{ minHeight: 555 }}>
+    <div ref={containerRef} className="w-full" style={{ minHeight: containerHeight }}>
       <div id="inline-container" style={{ width: "100%" }} />
     </div>
   );
