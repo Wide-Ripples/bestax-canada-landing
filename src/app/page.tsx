@@ -50,7 +50,7 @@ function Btn({ href, children, red = false }: { href: string; children: React.Re
 export default async function Page() {
   const content = await getContent();
   return (
-    <div className="bg-white text-[#333] pb-16 md:pb-0 overflow-x-hidden">
+    <div className="bg-white text-[#333] pb-16 md:pb-0" style={{ overflowX: "clip" }}>
       {/* Header only on mobile — desktop gets a sticky sidebar CTA instead */}
       <div className="md:hidden">
         <StickyHeader phone={content.header.phone} ctaText={content.header.ctaText} ctaHref={content.header.ctaHref} />
