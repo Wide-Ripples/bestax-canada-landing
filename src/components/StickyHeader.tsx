@@ -12,11 +12,12 @@ export default function StickyHeader({ phone, ctaText, ctaHref }: Props) {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
       <div className="w-full px-4 sm:px-6 lg:px-10 py-2 sm:py-3 flex items-center justify-between">
         <Image
-          src="/assets/Logo/bestax-canada-logo without background.png"
+          src="/assets/Logo/bestax-canada-logo without background.webp"
           alt="Bestax Accountants Canada"
           width={200}
           height={75}
           priority
+          fetchPriority="high"
           className="h-10 sm:h-14 w-auto object-contain"
         />
         <div className="flex items-center gap-4">

@@ -2,9 +2,10 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
+// Only load weights actually used on the page — cuts ~40KB from font payload
 const inter = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700", "900"],
   variable: "--font-inter",
   display: "swap",
 });
@@ -37,6 +38,12 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={inter.variable}>
+      <head>
+        {/* Preconnect to booking widget origin to eliminate connection latency */}
+        <link rel="preconnect" href="https://bookings.nimbuspop.com" />
+        <link rel="preconnect" href="https://appointments.bestax.ca" />
+        <link rel="dns-prefetch" href="https://bookings.nimbuspop.com" />
+      </head>
       <body>{children}</body>
     </html>
   );

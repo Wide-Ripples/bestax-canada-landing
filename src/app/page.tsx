@@ -7,6 +7,9 @@ import MobileBookingBar from "@/components/MobileBookingBar";
 import ScrollToTop from "@/components/ScrollToTop";
 import { getContent } from "@/lib/content";
 
+// Revalidate every 60s — page stays fast (SSG) but picks up Redis content changes quickly
+export const revalidate = 60;
+
 function Stars() {
   return (
     <div className="flex items-center gap-0.5">
@@ -212,10 +215,10 @@ export default async function Page() {
         {/* Google reviews row */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-3">
           {[
-            "Margie WIlson Bestax Accountants.png",
-            "Mildred silva bestax accountants.png",
-            "carlos Mitchell Bestax Accountants.png",
-            "ngt consultancy review for bestax accountants.png",
+            "Margie WIlson Bestax Accountants.webp",
+            "Mildred silva bestax accountants.webp",
+            "carlos Mitchell Bestax Accountants.webp",
+            "ngt consultancy review for bestax accountants.webp",
           ].map((file) => (
             <div key={file} className="rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow bg-white">
               <Image
@@ -232,8 +235,8 @@ export default async function Page() {
         {/* Trustpilot reviews row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
           {[
-            "Screenshot 2026-06-18 223542.png",
-            "Screenshot 2026-06-18 223613.png",
+            "Screenshot 2026-06-18 223542.webp",
+            "Screenshot 2026-06-18 223613.webp",
           ].map((file) => (
             <div key={file} className="rounded-xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md transition-shadow bg-white">
               <Image
@@ -300,10 +303,11 @@ export default async function Page() {
       <footer className="bg-[#111] px-6 lg:px-10 py-5">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           <Image
-            src="/assets/Logo/bestax-canada-logo without background.png"
+            src="/assets/Logo/bestax-canada-logo without background.webp"
             alt="Bestax Accountants"
             width={120}
             height={45}
+            loading="lazy"
             className={`h-9 w-auto object-contain ${content.footer.logoColorful ? "opacity-90" : "brightness-0 invert opacity-80"}`}
           />
           <p className="text-gray-600 text-xs text-center sm:text-right">

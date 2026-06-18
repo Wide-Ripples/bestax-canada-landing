@@ -169,7 +169,7 @@ export default function AdminDashboard() {
       {/* Header */}
       <header className="border-b border-white/10 px-6 py-4 flex items-center justify-between shrink-0">
         <div className="flex items-center gap-3">
-          <Image src="/assets/Logo/bestax-canada-logo without background.png" alt="Bestax" width={100} height={36} className="h-9 w-auto" />
+          <Image src="/assets/Logo/bestax-canada-logo without background.webp" alt="Bestax" width={100} height={36} className="h-9 w-auto" />
           <span className="text-white/30 text-sm hidden sm:block">Admin Dashboard</span>
         </div>
         <div className="flex items-center gap-4">
