@@ -49,7 +49,7 @@ function Btn({ href, children, red = false }: { href: string; children: React.Re
 export default async function Page() {
   const content = await getContent();
   return (
-    <div className="bg-white text-[#333] pb-16 md:pb-0">
+    <div className="bg-white text-[#333] pb-16 md:pb-0 overflow-x-hidden">
       <StickyHeader phone={content.header.phone} ctaText={content.header.ctaText} ctaHref={content.header.ctaHref} />
       <main>
 
@@ -78,11 +78,13 @@ export default async function Page() {
                 <span className="text-[#E84319]">{content.hero.headlineAccent}</span>
                 {" "}{content.hero.headlinePost}
               </h1>
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-white border border-gray-200 rounded-full px-3 sm:px-4 py-1.5 shadow-sm">
-                <Stars />
-                <span className="text-xs sm:text-sm font-semibold text-[#1a1a1a] whitespace-nowrap">5.0 on Google</span>
-                <span className="text-gray-300 text-xs" aria-hidden="true">|</span>
-                <span className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">Trusted by {content.stats[2].num} Canadian businesses</span>
+              <div className="inline-flex flex-col sm:flex-row items-center gap-1 sm:gap-2 bg-white border border-gray-200 rounded-2xl sm:rounded-full px-4 py-2 shadow-sm max-w-full">
+                <div className="flex items-center gap-1.5">
+                  <Stars />
+                  <span className="text-xs sm:text-sm font-semibold text-[#1a1a1a]">5.0 on Google</span>
+                </div>
+                <span className="text-gray-300 text-xs hidden sm:inline" aria-hidden="true">|</span>
+                <span className="text-xs sm:text-sm text-gray-600 text-center">Trusted by {content.stats[2].num} Canadian businesses</span>
               </div>
             </div>
 
