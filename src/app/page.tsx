@@ -102,16 +102,34 @@ export default function Page() {
               <p className="text-base font-bold text-[#E84319] mb-4">This is for you if...</p>
               <ul className="grid sm:grid-cols-2 gap-4">
                 {[
-                  "Books are behind or inconsistent",
-                  "Unsure about GST/HST filings",
-                  "No clear monthly numbers",
-                  "Year-end is always stressful",
-                  "Accountant is reactive, not proactive",
-                  "Need one firm for everything",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-[17px] font-medium text-gray-700">
-                    <Check red />
-                    {item}
+                  {
+                    text: "Books are behind or inconsistent",
+                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>,
+                  },
+                  {
+                    text: "Unsure about GST/HST filings",
+                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /><path strokeLinecap="round" strokeLinejoin="round" d="M10 9a2 2 0 114 0c0 1.5-2 2-2 4" /></svg>,
+                  },
+                  {
+                    text: "No clear monthly numbers",
+                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>,
+                  },
+                  {
+                    text: "Year-end is always stressful",
+                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 13v3m0 0h.01" /></svg>,
+                  },
+                  {
+                    text: "Accountant is reactive, not proactive",
+                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>,
+                  },
+                  {
+                    text: "Need one firm for everything",
+                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>,
+                  },
+                ].map(({ text, icon }) => (
+                  <li key={text} className="flex items-start gap-3 text-[17px] font-medium text-gray-700">
+                    {icon}
+                    {text}
                   </li>
                 ))}
               </ul>
@@ -210,11 +228,11 @@ export default function Page() {
       </section>
 
       {/* ── $427K BANNER ───────────────────────────────────── */}
-      <div className="bg-[#E84319] py-7 px-6 lg:px-10 text-center">
-        <p className="text-white/70 text-sm font-semibold mb-2 tracking-widest uppercase">Proven results for Canadian businesses</p>
-        <p className="text-[60px] sm:text-[80px] font-black text-white leading-none mb-2">$427,000</p>
-        <p className="text-white text-lg sm:text-xl font-bold">in CRA penalties and interest avoided for our clients</p>
-        <p className="text-white/60 text-[15px] mt-1">Through accurate filings, proactive planning, and on-time submissions.</p>
+      <div className="bg-[#E84319] py-8 px-6 lg:px-10 text-center">
+        <p className="text-white/70 text-xs font-semibold mb-1 tracking-widest uppercase">Proven results for Canadian businesses</p>
+        <p className="text-[52px] sm:text-[68px] font-black text-white leading-none my-1">$427,000</p>
+        <p className="text-white text-base sm:text-lg font-bold">in CRA penalties and interest avoided for our clients</p>
+        <p className="text-white/60 text-[14px] mt-1">Through accurate filings, proactive planning, and on-time submissions.</p>
       </div>
 
       {/* ── TESTIMONIALS ───────────────────────────────────── */}
