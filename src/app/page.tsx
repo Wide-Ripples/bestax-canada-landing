@@ -152,7 +152,8 @@ export default async function Page() {
 
           {/* RIGHT: Booking card (sticky) */}
           <div id="booking" className="lg:sticky lg:top-[60px] scroll-mt-[60px]">
-            <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100">
+            {/* On desktop: fill exactly from sticky top (60px) to bottom of viewport */}
+            <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100 lg:flex lg:flex-col lg:h-[calc(100vh-60px)]">
 
               <div className="bg-[#E84319] px-5 py-3 shrink-0">
                 <h2 className="text-white font-bold text-base leading-snug mb-1.5">
@@ -169,13 +170,13 @@ export default async function Page() {
                 </div>
               </div>
 
-              <div className="bg-white">
+              <div className="bg-white lg:flex-1 lg:overflow-hidden">
                 <BookingEmbed />
               </div>
 
             </div>
 
-            <p className="text-center mt-3 text-sm text-gray-500">
+            <p className="text-center mt-3 text-sm text-gray-500 lg:hidden">
               Prefer to call?{" "}
               <a href="tel:+14169910900" className="text-[#E84319] font-semibold hover:underline">
                 +1 416 991 0900

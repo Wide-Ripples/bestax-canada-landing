@@ -10,8 +10,8 @@ declare global {
   }
 }
 
-// 60px desktop header + ~68px card red header + 2px border buffer
-const DESKTOP_CHROME = 130;
+// 60px sticky offset + 68px card red header = 128px
+const DESKTOP_CHROME = 128;
 const MOBILE_HEIGHT = 555;
 
 function getIframeHeight() {
