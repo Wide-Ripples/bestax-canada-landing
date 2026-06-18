@@ -1,4 +1,27 @@
+"use client";
+
+import { useEffect, useState } from "react";
+
 export default function MobileBookingBar() {
+  const [hidden, setHidden] = useState(false);
+
+  useEffect(() => {
+    // Hide the bar when the booking embed is visible on screen —
+    // prevents confusion between "Book Free Appointment" and NimbusPop's
+    // "Schedule Consultation" submit button.
+    const target = document.getElementById("inline-container");
+    if (!target) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setHidden(entry.isIntersecting),
+      { threshold: 0.2 }
+    );
+    observer.observe(target);
+    return () => observer.disconnect();
+  }, []);
+
+  if (hidden) return null;
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-gray-200 px-3 py-3 flex items-center gap-2.5 shadow-[0_-4px_20px_rgba(0,0,0,0.1)]">
       <a
