@@ -51,6 +51,7 @@ export default async function Page() {
   return (
     <div className="bg-white text-[#333] pb-16 md:pb-0">
       <StickyHeader phone={content.header.phone} ctaText={content.header.ctaText} ctaHref={content.header.ctaHref} />
+      <main>
 
       {/* ── URGENCY STRIP ──────────────────────────────────── */}
       <div className="bg-[#E84319] py-2.5 px-6 lg:px-10 text-center">
@@ -80,8 +81,8 @@ export default async function Page() {
               <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 shadow-sm">
                 <Stars />
                 <span className="text-sm font-semibold text-[#1a1a1a]">5.0 on Google</span>
-                <span className="text-gray-300 text-sm">|</span>
-                <span className="text-sm text-gray-500">Trusted by {content.stats[2].num} Canadian businesses</span>
+                <span className="text-gray-400 text-sm" aria-hidden="true">|</span>
+                <span className="text-sm text-gray-600">Trusted by {content.stats[2].num} Canadian businesses</span>
               </div>
             </div>
 
@@ -170,7 +171,7 @@ export default async function Page() {
               <a href="tel:+14169910900" className="text-[#E84319] font-semibold hover:underline">
                 +1 416 991 0900
               </a>
-              <span className="text-gray-400"> · Mon–Sat 9am–8pm</span>
+              <span className="text-gray-600"> · Mon–Sat 9am–8pm</span>
             </p>
           </div>
 
@@ -289,7 +290,7 @@ export default async function Page() {
         <FaqAccordion faqs={content.faqs} />
         <div className="text-center mt-10">
           <Btn href="#booking">Book Free Consultation Now</Btn>
-          <p className="text-sm text-gray-400 mt-3">
+          <p className="text-sm text-gray-600 mt-3">
             Or call us:{" "}
             <a href="tel:+14169910900" className="text-[#E84319] font-semibold hover:underline">
               +1 416 991 0900
@@ -298,6 +299,8 @@ export default async function Page() {
           </p>
         </div>
       </section>
+
+      </main>
 
       {/* ── FOOTER ─────────────────────────────────────────── */}
       <footer className="bg-[#111] px-6 lg:px-10 py-5">

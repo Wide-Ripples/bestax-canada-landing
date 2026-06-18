@@ -53,7 +53,9 @@ export default function VideoPlayer() {
           playsInline
           preload="metadata"
           className="w-full h-full object-cover block"
-        />
+        >
+          <track kind="captions" srcLang="en" label="English" default />
+        </video>
       )}
 
       {/* Placeholder shown before video loads */}
