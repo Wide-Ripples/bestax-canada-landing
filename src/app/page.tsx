@@ -70,7 +70,7 @@ export default async function Page() {
       {/* ══════════════════════════════════════════════════════
           HERO — full width, video left · booking right
       ══════════════════════════════════════════════════════ */}
-      <section className="w-full px-6 lg:px-10 pt-4 sm:pt-6 pb-6">
+      <section className="w-full px-6 lg:px-10 pt-4 sm:pt-6 pb-6 lg:pt-0 lg:pb-0">
 
         {/* Two-column hero — form starts at top, headline lives above video */}
         <div className="grid lg:grid-cols-[1fr_460px] gap-7 items-start">
@@ -151,9 +151,8 @@ export default async function Page() {
           </div>
 
           {/* RIGHT: Booking card (sticky) */}
-          <div id="booking" className="lg:sticky lg:top-[60px] scroll-mt-[60px]">
-            {/* On desktop: fill exactly from sticky top (60px) to bottom of viewport */}
-            <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100 lg:flex lg:flex-col lg:h-[calc(100vh-60px)]">
+          <div id="booking" className="lg:sticky lg:top-[60px] lg:h-[calc(100vh-60px)] scroll-mt-[60px]">
+            <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100 h-full flex flex-col">
 
               <div className="bg-[#E84319] px-5 py-3 shrink-0">
                 <h2 className="text-white font-bold text-base leading-snug mb-1.5">
@@ -170,7 +169,7 @@ export default async function Page() {
                 </div>
               </div>
 
-              <div className="bg-white lg:flex-1 lg:overflow-hidden">
+              <div className="bg-white flex-1 overflow-hidden">
                 <BookingEmbed />
               </div>
 
