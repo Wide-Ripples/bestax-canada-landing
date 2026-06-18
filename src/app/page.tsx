@@ -57,28 +57,28 @@ export default function Page() {
       {/* ══════════════════════════════════════════════════════
           HERO — full width, video left · booking right
       ══════════════════════════════════════════════════════ */}
-      <section className="w-full px-6 lg:px-10 pt-4 sm:pt-8 pb-6">
+      <section className="w-full px-6 lg:px-10 pt-4 sm:pt-6 pb-6">
 
-        {/* Headline — centered text, generous width */}
-        <div className="text-center mb-4 sm:mb-7">
-          <h1 className="text-[1.75rem] sm:text-[3rem] lg:text-[3.5rem] font-black text-[#1a1a1a] leading-[1.15] mb-3">
-            Stop Losing Money to Messy Books,{" "}
-            <span className="text-[#E84319]">Missed Deadlines</span>,{" "}
-            and CRA Surprises
-          </h1>
-          <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 shadow-sm">
-            <Stars />
-            <span className="text-sm font-semibold text-[#1a1a1a]">5.0 on Google</span>
-            <span className="text-gray-300 text-sm">|</span>
-            <span className="text-sm text-gray-500">Trusted by 1,000+ Canadian businesses</span>
-          </div>
-        </div>
-
-        {/* Two-column hero — fills full width */}
+        {/* Two-column hero — form starts at top, headline lives above video */}
         <div className="grid lg:grid-cols-[1fr_460px] gap-7 items-start">
 
-          {/* LEFT: Video + trust cards */}
+          {/* LEFT: Headline + Video + trust cards */}
           <div className="flex flex-col gap-5 min-w-0">
+
+            {/* Headline lives here — only above the video, not full width */}
+            <div className="mb-1">
+              <h1 className="text-[1.75rem] sm:text-[2.6rem] lg:text-[3rem] font-black text-[#1a1a1a] leading-[1.15] mb-3">
+                Stop Losing Money to Messy Books,{" "}
+                <span className="text-[#E84319]">Missed Deadlines</span>,{" "}
+                and CRA Surprises
+              </h1>
+              <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 shadow-sm">
+                <Stars />
+                <span className="text-sm font-semibold text-[#1a1a1a]">5.0 on Google</span>
+                <span className="text-gray-300 text-sm">|</span>
+                <span className="text-sm text-gray-500">Trusted by 1,000+ Canadian businesses</span>
+              </div>
+            </div>
 
             <VideoPlayer />
 
@@ -236,7 +236,7 @@ export default function Page() {
       </div>
 
       {/* ── TESTIMONIALS ───────────────────────────────────── */}
-      <section className="w-full px-6 lg:px-10 py-14">
+      <section className="w-full px-6 lg:px-10 py-10">
         <div className="text-center mb-8">
           <div className="inline-flex items-center gap-2 mb-2">
             <Stars />
@@ -271,20 +271,28 @@ export default function Page() {
       </section>
 
       {/* ── DARK URGENCY CLOSER ────────────────────────────── */}
-      <section className="bg-[#1a1a1a] py-14 px-6 lg:px-10 text-center">
-        <p className="text-gray-500 text-sm font-semibold mb-3 tracking-widest uppercase">Don&apos;t wait until there&apos;s a problem</p>
-        <h2 className="text-4xl sm:text-5xl font-black text-white mb-5 leading-tight">
+      <section className="bg-[#1a1a1a] py-10 px-6 lg:px-10 text-center">
+        <p className="text-gray-500 text-xs font-semibold mb-3 tracking-widest uppercase">Don&apos;t wait until there&apos;s a problem</p>
+        <h2 className="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight">
           Most Business Owners Act Too Late.
         </h2>
-        <p className="text-gray-300 text-lg max-w-lg mx-auto mb-8">
+        <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
           By the time CRA sends a notice, penalties are already stacking up. A 20-minute call now can save you thousands later.
         </p>
-        <Btn href="#booking" red>Claim My Free Spot Now</Btn>
-        <p className="text-gray-600 text-sm mt-3">Free · No pressure · No commitment</p>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-3">
+          <Btn href="#booking" red>Claim My Free Spot Now</Btn>
+          <a href="tel:+14169910900" className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors text-[15px]">
+            <svg className="w-4 h-4 text-[#E84319]" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
+            </svg>
+            +1 416 991 0900
+          </a>
+        </div>
+        <p className="text-gray-600 text-sm">Free · No pressure · No commitment</p>
       </section>
 
       {/* ── FAQ ────────────────────────────────────────────── */}
-      <section className="w-full px-6 lg:px-10 py-14">
+      <section className="w-full px-6 lg:px-10 py-10">
         <div className="text-center mb-8">
           <h2 className="text-3xl sm:text-4xl font-black text-[#1a1a1a]">Frequently Asked Questions</h2>
           <p className="text-gray-500 text-lg mt-2">Still have questions? These are the ones we hear most often.</p>
@@ -303,24 +311,21 @@ export default function Page() {
       </section>
 
       {/* ── FOOTER ─────────────────────────────────────────── */}
-      <footer className="bg-[#111] text-gray-500 text-sm py-8 px-6 lg:px-10">
-        <div className="w-full flex flex-col sm:flex-row items-center justify-between gap-4">
+      <footer className="bg-[#111] px-6 lg:px-10 py-5">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           <Image
             src="/assets/Logo/bestax-canada-logo without background.png"
             alt="Bestax Accountants"
-            width={110}
-            height={42}
-            className="h-9 w-auto object-contain brightness-0 invert opacity-50"
+            width={120}
+            height={45}
+            className="h-9 w-auto object-contain brightness-0 invert opacity-80"
           />
-          <div className="text-center sm:text-right space-y-1">
-            <p>1470 Hurontario St #100, Mississauga, ON L5G 3H4</p>
-            <p>
-              <a href="tel:+14169910900" className="hover:text-gray-300 transition-colors">+1 416 991 0900</a>
-              {" "}·{" "}
-              <a href="mailto:info@bestax.ca" className="hover:text-gray-300 transition-colors">info@bestax.ca</a>
-            </p>
-            <p>&copy; {new Date().getFullYear()} Bestax Accountants. All rights reserved.</p>
-          </div>
+          <p className="text-gray-600 text-xs text-center sm:text-right">
+            &copy; {new Date().getFullYear()} Bestax Accountants &nbsp;&middot;&nbsp;
+            <a href="tel:+14169910900" className="hover:text-gray-400 transition-colors">+1 416 991 0900</a>
+            &nbsp;&middot;&nbsp;
+            <a href="mailto:info@bestax.ca" className="hover:text-gray-400 transition-colors">info@bestax.ca</a>
+          </p>
         </div>
       </footer>
 
