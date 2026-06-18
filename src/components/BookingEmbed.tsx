@@ -18,17 +18,29 @@ export default function BookingEmbed() {
     const el = containerRef.current;
     if (!el) return;
 
-    // Only load NimbusPop when the booking section enters the viewport —
-    // prevents 1MB+ of third-party JS from blocking the main thread on initial load
+    // Trigger loading: defer via requestIdleCallback so NimbusPop's heavy JS
+    // doesn't block the main thread during initial paint (fixes desktop TBT).
+    // Falls back to a 2.5s setTimeout on browsers without requestIdleCallback.
+    const scheduleLoad = () => {
+      if (loadedRef.current) return;
+      loadedRef.current = true;
+      if (typeof (window as Window & typeof globalThis).requestIdleCallback === "function") {
+        requestIdleCallback(() => loadNimbus(), { timeout: 4000 });
+      } else {
+        setTimeout(loadNimbus, 2500);
+      }
+    };
+
+    // Still use IntersectionObserver so on mobile (where embed is below fold)
+    // we don't even schedule until user scrolls near it.
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting && !loadedRef.current) {
-          loadedRef.current = true;
+        if (entry.isIntersecting) {
+          scheduleLoad();
           observer.disconnect();
-          loadNimbus();
         }
       },
-      { rootMargin: "300px" }
+      { rootMargin: "200px" }
     );
     observer.observe(el);
     return () => observer.disconnect();
@@ -43,7 +55,7 @@ export default function BookingEmbed() {
           height: "660px",
           width: "100%",
         });
-        // Add accessible title to the iframe NimbusPop creates
+        // Poll for the iframe NimbusPop creates and add accessible title
         const poll = setInterval(() => {
           const iframe = document.querySelector("#inline-container iframe") as HTMLIFrameElement | null;
           if (iframe) {

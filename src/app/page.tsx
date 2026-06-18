@@ -80,9 +80,9 @@ export default async function Page() {
               </h1>
               <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 shadow-sm">
                 <Stars />
-                <span className="text-sm font-semibold text-[#1a1a1a]">5.0 on Google</span>
-                <span className="text-gray-400 text-sm" aria-hidden="true">|</span>
-                <span className="text-sm text-gray-600">Trusted by {content.stats[2].num} Canadian businesses</span>
+                <span className="text-sm font-semibold text-[#1a1a1a] whitespace-nowrap">5.0 on Google</span>
+                <span className="text-gray-400 text-sm hidden sm:inline" aria-hidden="true">|</span>
+                <span className="text-sm text-gray-600 hidden sm:inline whitespace-nowrap">Trusted by {content.stats[2].num} Canadian businesses</span>
               </div>
             </div>
 
@@ -151,7 +151,7 @@ export default async function Page() {
                 </h2>
                 <div className="flex items-center justify-between flex-wrap gap-2">
                   <div className="flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block" />
+                    <span className="w-2 h-2 rounded-full bg-green-400 inline-block" />
                     <span className="text-white/90 text-xs font-medium">{content.booking.cardSubtitle}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-white/80 text-xs">
