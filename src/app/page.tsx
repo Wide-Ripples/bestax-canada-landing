@@ -78,11 +78,11 @@ export default async function Page() {
                 <span className="text-[#E84319]">{content.hero.headlineAccent}</span>
                 {" "}{content.hero.headlinePost}
               </h1>
-              <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 shadow-sm">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 bg-white border border-gray-200 rounded-full px-3 sm:px-4 py-1.5 shadow-sm">
                 <Stars />
-                <span className="text-sm font-semibold text-[#1a1a1a] whitespace-nowrap">5.0 on Google</span>
-                <span className="text-gray-400 text-sm hidden sm:inline" aria-hidden="true">|</span>
-                <span className="text-sm text-gray-600 hidden sm:inline whitespace-nowrap">Trusted by {content.stats[2].num} Canadian businesses</span>
+                <span className="text-xs sm:text-sm font-semibold text-[#1a1a1a] whitespace-nowrap">5.0 on Google</span>
+                <span className="text-gray-300 text-xs" aria-hidden="true">|</span>
+                <span className="text-xs sm:text-sm text-gray-600 whitespace-nowrap">Trusted by {content.stats[2].num} Canadian businesses</span>
               </div>
             </div>
 
