@@ -32,7 +32,7 @@ export default function AdminLogin() {
     <div className="min-h-screen bg-[#1a1a1a] flex items-center justify-center px-4">
       <div className="w-full max-w-sm">
         <div className="flex justify-center mb-8">
-          <Image src="/logo.png" alt="Bestax" width={140} height={48} className="h-12 w-auto" />
+          <Image src="/assets/Logo/bestax-canada-logo without background.png" alt="Bestax" width={140} height={48} className="h-12 w-auto" />
         </div>
 
         <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
