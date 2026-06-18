@@ -10,8 +10,8 @@ declare global {
   }
 }
 
-// 60px sticky offset + 68px card red header = 128px
-const DESKTOP_CHROME = 128;
+// 60px sticky offset + 68px card red header + 44px pinned footer row = 172px
+const DESKTOP_CHROME = 172;
 const MOBILE_HEIGHT = 555;
 
 function getIframeHeight() {

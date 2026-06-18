@@ -173,15 +173,18 @@ export default async function Page() {
                 <BookingEmbed />
               </div>
 
-            </div>
+              {/* Pinned footer inside the card — visible at the bottom with no scroll */}
+              <div className="bg-white border-t border-gray-100 py-2.5 text-center shrink-0">
+                <p className="text-sm text-gray-500">
+                  Prefer to call?{" "}
+                  <a href="tel:+14169910900" className="text-[#E84319] font-semibold hover:underline">
+                    +1 416 991 0900
+                  </a>
+                  <span className="text-gray-600"> · Mon–Sat 9am–8pm</span>
+                </p>
+              </div>
 
-            <p className="text-center mt-3 text-sm text-gray-500">
-              Prefer to call?{" "}
-              <a href="tel:+14169910900" className="text-[#E84319] font-semibold hover:underline">
-                +1 416 991 0900
-              </a>
-              <span className="text-gray-600"> · Mon–Sat 9am–8pm</span>
-            </p>
+            </div>
           </div>
 
         </div>
