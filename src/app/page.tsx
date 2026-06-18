@@ -152,8 +152,7 @@ export default async function Page() {
 
           {/* RIGHT: Booking card (sticky) */}
           <div id="booking" className="lg:sticky lg:top-[60px] scroll-mt-[60px]">
-            {/* max-h constrains the card to the viewport so it doesn't push below fold */}
-            <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100 lg:flex lg:flex-col" style={{ maxHeight: "calc(100vh - 76px)" }}>
+            <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100">
 
               <div className="bg-[#E84319] px-5 py-3 shrink-0">
                 <h2 className="text-white font-bold text-base leading-snug mb-1.5">
@@ -170,7 +169,7 @@ export default async function Page() {
                 </div>
               </div>
 
-              <div className="bg-white lg:flex-1 lg:overflow-y-auto">
+              <div className="bg-white">
                 <BookingEmbed />
               </div>
 
@@ -324,7 +323,7 @@ export default async function Page() {
             className={`h-9 w-auto object-contain ${content.footer.logoColorful ? "opacity-90" : "brightness-0 invert opacity-80"}`}
           />
           <p className="text-gray-600 text-xs text-center sm:text-right">
-            &copy; {new Date().getFullYear()} Bestax Accountants &nbsp;&middot;&nbsp;
+            &copy; {new Date().getFullYear()}&nbsp;Bestax Accountants &nbsp;&middot;&nbsp;
             <a href={`tel:+${content.footer.phone.replace(/\D/g,"")}`} className="hover:text-gray-400 transition-colors">{content.footer.phone}</a>
             &nbsp;&middot;&nbsp;
             <a href={`mailto:${content.footer.email}`} className="hover:text-gray-400 transition-colors">{content.footer.email}</a>

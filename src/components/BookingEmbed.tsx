@@ -52,7 +52,7 @@ export default function BookingEmbed() {
         window.Bookings.inlineEmbed({
           url: "https://appointments.bestax.ca/portal-embed#/inquiry",
           parent: "#inline-container",
-          height: "660px",
+          height: "555px",
           width: "100%",
         });
         // Poll for the iframe NimbusPop creates and add accessible title
@@ -77,7 +77,7 @@ export default function BookingEmbed() {
   }
 
   return (
-    <div ref={containerRef} className="w-full" style={{ minHeight: 660 }}>
+    <div ref={containerRef} className="w-full" style={{ minHeight: 555 }}>
       <div id="inline-container" style={{ width: "100%" }} />
     </div>
   );
