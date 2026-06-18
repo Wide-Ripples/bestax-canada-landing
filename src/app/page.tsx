@@ -148,7 +148,7 @@ export default async function Page() {
           </div>
 
           {/* RIGHT: Booking card (sticky) */}
-          <div id="booking" className="lg:sticky lg:top-[72px] scroll-mt-[72px]">
+          <div id="booking" className="lg:sticky lg:top-4 scroll-mt-4">
             <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100">
 
               <div className="bg-[#E84319] px-5 py-4">
