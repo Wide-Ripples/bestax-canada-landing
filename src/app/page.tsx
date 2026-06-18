@@ -175,7 +175,7 @@ export default async function Page() {
 
             </div>
 
-            <p className="text-center mt-3 text-sm text-gray-500 lg:hidden">
+            <p className="text-center mt-3 text-sm text-gray-500">
               Prefer to call?{" "}
               <a href="tel:+14169910900" className="text-[#E84319] font-semibold hover:underline">
                 +1 416 991 0900
