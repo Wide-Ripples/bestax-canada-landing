@@ -322,13 +322,15 @@ export default async function Page() {
             loading="lazy"
             className={`h-9 w-auto object-contain ${content.footer.logoColorful ? "opacity-90" : "brightness-0 invert opacity-80"}`}
           />
-          <p className="text-gray-600 text-xs text-center sm:text-right">
-            &copy; {new Date().getFullYear()}&nbsp;Bestax Accountants &nbsp;&middot;&nbsp;
-            <a href={`tel:+${content.footer.phone.replace(/\D/g,"")}`} className="hover:text-gray-400 transition-colors">{content.footer.phone}</a>
-            &nbsp;&middot;&nbsp;
-            <a href={`mailto:${content.footer.email}`} className="hover:text-gray-400 transition-colors">{content.footer.email}</a>
-            &nbsp;&middot;&nbsp;{content.footer.hours}
-          </p>
+          <div className="text-gray-600 text-xs text-center sm:text-right flex flex-col gap-0.5">
+            <span>&copy; {new Date().getFullYear()}&nbsp;Bestax Accountants</span>
+            <span>
+              <a href={`tel:+${content.footer.phone.replace(/\D/g,"")}`} className="hover:text-gray-400 transition-colors whitespace-nowrap">{content.footer.phone}</a>
+              &nbsp;&middot;&nbsp;
+              <a href={`mailto:${content.footer.email}`} className="hover:text-gray-400 transition-colors">{content.footer.email}</a>
+              &nbsp;&middot;&nbsp;{content.footer.hours}
+            </span>
+          </div>
         </div>
       </footer>
 
