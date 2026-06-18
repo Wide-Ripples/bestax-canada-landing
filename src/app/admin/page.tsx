@@ -31,6 +31,27 @@ export default function AdminDashboard() {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Ctrl+V paste image from clipboard
+  useEffect(() => {
+    function handlePaste(e: ClipboardEvent) {
+      const items = e.clipboardData?.items;
+      if (!items) return;
+      for (const item of Array.from(items)) {
+        if (item.type.startsWith("image/")) {
+          const file = item.getAsFile();
+          if (!file) continue;
+          setAttachedFile(file);
+          const reader = new FileReader();
+          reader.onload = () => setAttachedPreview(reader.result as string);
+          reader.readAsDataURL(file);
+          break;
+        }
+      }
+    }
+    window.addEventListener("paste", handlePaste);
+    return () => window.removeEventListener("paste", handlePaste);
+  }, []);
+
   function handleFileChange(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -296,7 +317,7 @@ export default function AdminDashboard() {
           </div>
 
           <p className="text-white/20 text-xs text-center mt-2">
-            Enter to send · Shift+Enter for new line · 📎 attach screenshots
+            Enter to send · Shift+Enter for new line · Ctrl+V or 📎 to attach screenshots
           </p>
         </div>
       </div>

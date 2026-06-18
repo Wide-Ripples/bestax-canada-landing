@@ -2,6 +2,23 @@ import { unstable_cache, revalidateTag } from "next/cache";
 import type { PageContent } from "./schema";
 import { defaultContent } from "./defaultContent";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function deepMerge(target: any, source: any): any {
+  const result = { ...target };
+  for (const key of Object.keys(source)) {
+    if (
+      source[key] !== null &&
+      typeof source[key] === "object" &&
+      !Array.isArray(source[key])
+    ) {
+      result[key] = deepMerge(target[key] ?? {}, source[key]);
+    } else {
+      result[key] = source[key];
+    }
+  }
+  return result;
+}
+
 function getRedis() {
   const url = (process.env.UPSTASH_REDIS_REST_URL ?? "").replace(/^﻿/, "").trim();
   const token = (process.env.UPSTASH_REDIS_REST_TOKEN ?? "").replace(/^﻿/, "").trim();
@@ -24,7 +41,9 @@ async function fetchFromRedis(): Promise<PageContent | null> {
 export const getContent = unstable_cache(
   async (): Promise<PageContent> => {
     const stored = await fetchFromRedis();
-    return stored ?? defaultContent;
+    // Always merge stored data ON TOP of defaultContent so any new fields
+    // added to the schema always have a value even with old Redis data
+    return stored ? deepMerge(defaultContent, stored) as PageContent : defaultContent;
   },
   ["page-content"],
   { tags: ["content"] }
@@ -40,21 +59,4 @@ export async function saveContent(updates: Partial<PageContent>): Promise<void> 
   const merged = deepMerge(current, updates) as PageContent;
   await redis.set("bestax:content", JSON.stringify(merged));
   revalidateTag("content", "max");
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function deepMerge(target: any, source: any): any {
-  const result = { ...target };
-  for (const key of Object.keys(source)) {
-    if (
-      source[key] !== null &&
-      typeof source[key] === "object" &&
-      !Array.isArray(source[key])
-    ) {
-      result[key] = deepMerge(target[key] ?? {}, source[key]);
-    } else {
-      result[key] = source[key];
-    }
-  }
-  return result;
 }

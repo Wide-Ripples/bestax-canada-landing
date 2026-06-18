@@ -47,7 +47,7 @@ export default async function Page() {
   const content = await getContent();
   return (
     <div className="bg-white text-[#333] pb-16 md:pb-0">
-      <StickyHeader />
+      <StickyHeader phone={content.header.phone} ctaText={content.header.ctaText} ctaHref={content.header.ctaHref} />
 
       {/* ── URGENCY STRIP ──────────────────────────────────── */}
       <div className="bg-[#E84319] py-2.5 px-6 lg:px-10 text-center">
@@ -78,7 +78,7 @@ export default async function Page() {
                 <Stars />
                 <span className="text-sm font-semibold text-[#1a1a1a]">5.0 on Google</span>
                 <span className="text-gray-300 text-sm">|</span>
-                <span className="text-sm text-gray-500">Trusted by 1,000+ Canadian businesses</span>
+                <span className="text-sm text-gray-500">Trusted by {content.stats[2].num} Canadian businesses</span>
               </div>
             </div>
 
@@ -143,19 +143,15 @@ export default async function Page() {
 
               <div className="bg-[#E84319] px-5 py-4">
                 <h2 className="text-white font-bold text-base leading-snug mb-2">
-                  Free 20-Minute Tax &amp; Bookkeeping Review
+                  {content.booking.cardTitle}
                 </h2>
                 <div className="flex items-center justify-between flex-wrap gap-2">
                   <div className="flex items-center gap-1.5">
                     <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse inline-block" />
-                    <span className="text-white/90 text-xs font-medium">Accepting new clients this week</span>
+                    <span className="text-white/90 text-xs font-medium">{content.booking.cardSubtitle}</span>
                   </div>
                   <div className="flex items-center gap-1.5 text-white/80 text-xs">
-                    <span>Free</span>
-                    <span>·</span>
-                    <span>No obligation</span>
-                    <span>·</span>
-                    <span>20 min</span>
+                    {content.booking.calloutText}
                   </div>
                 </div>
               </div>
@@ -194,7 +190,7 @@ export default async function Page() {
             <span className="text-sm font-bold text-[#333]">5.0 on Google</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-black italic text-[#1a1a1a]">
-            Here&apos;s What Real Business Owners Say About Us:
+            {content.testimonials.heading}
           </h2>
         </div>
 
@@ -214,7 +210,7 @@ export default async function Page() {
 
         <div className="text-center">
           <p className="italic text-gray-500 text-sm mb-1">
-            ...and this is just a glimpse. Hundreds of happy clients trust Bestax daily.
+            {content.testimonials.subheading}
           </p>
           <p className="italic font-bold text-[#E84319] mb-6">Your turn now!</p>
           <Btn href="#booking">Book Free Consultation Now</Btn>
@@ -269,13 +265,14 @@ export default async function Page() {
             alt="Bestax Accountants"
             width={120}
             height={45}
-            className="h-9 w-auto object-contain brightness-0 invert opacity-80"
+            className={`h-9 w-auto object-contain ${content.footer.logoColorful ? "opacity-90" : "brightness-0 invert opacity-80"}`}
           />
           <p className="text-gray-600 text-xs text-center sm:text-right">
             &copy; {new Date().getFullYear()} Bestax Accountants &nbsp;&middot;&nbsp;
-            <a href="tel:+14169910900" className="hover:text-gray-400 transition-colors">+1 416 991 0900</a>
+            <a href={`tel:+${content.footer.phone.replace(/\D/g,"")}`} className="hover:text-gray-400 transition-colors">{content.footer.phone}</a>
             &nbsp;&middot;&nbsp;
-            <a href="mailto:info@bestax.ca" className="hover:text-gray-400 transition-colors">info@bestax.ca</a>
+            <a href={`mailto:${content.footer.email}`} className="hover:text-gray-400 transition-colors">{content.footer.email}</a>
+            &nbsp;&middot;&nbsp;{content.footer.hours}
           </p>
         </div>
       </footer>

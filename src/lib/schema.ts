@@ -23,4 +23,26 @@ export interface PageContent {
     body: string;
   };
   faqs: FaqItem[];
+
+  // Design & layout settings
+  header: {
+    phone: string;
+    ctaText: string;
+    ctaHref: string;
+  };
+  footer: {
+    phone: string;
+    email: string;
+    hours: string;
+    logoColorful: boolean; // false = white/inverted (default), true = original colors
+  };
+  booking: {
+    cardTitle: string;
+    cardSubtitle: string;
+    calloutText: string;
+  };
+  testimonials: {
+    heading: string;
+    subheading: string;
+  };
 }

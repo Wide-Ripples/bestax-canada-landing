@@ -39,6 +39,26 @@ export const defaultContent: PageContent = {
     headline: "Most Business Owners Act Too Late.",
     body: "By the time CRA sends a notice, penalties are already stacking up. A 20-minute call now can save you thousands later.",
   },
+  header: {
+    phone: "+1 416 991 0900",
+    ctaText: "Book Free Call",
+    ctaHref: "#booking",
+  },
+  footer: {
+    phone: "+1 416 991 0900",
+    email: "info@bestax.ca",
+    hours: "Mon–Sat 9am–8pm",
+    logoColorful: false,
+  },
+  booking: {
+    cardTitle: "Free 20-Minute Tax & Bookkeeping Review",
+    cardSubtitle: "Accepting new clients this week",
+    calloutText: "Free · No obligation · 20 min",
+  },
+  testimonials: {
+    heading: "Here's What Real Business Owners Say About Us:",
+    subheading: "...and this is just a glimpse. Hundreds of happy clients trust Bestax daily.",
+  },
   faqs: [
     {
       q: "What types of businesses do you work with?",
