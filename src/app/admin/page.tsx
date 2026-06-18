@@ -75,18 +75,23 @@ export default function AdminDashboard() {
 
       let res: Response;
 
-      if (fileToSend) {
-        const form = new FormData();
-        form.append("messages", JSON.stringify(apiMessages));
-        form.append("file", fileToSend);
-        res = await fetch("/api/admin/chat", { method: "POST", body: form });
-      } else {
-        res = await fetch("/api/admin/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ messages: apiMessages }),
-        });
+      // Always send as JSON — extract base64 from data URL if image attached
+      let imageBase64: string | null = null;
+      let imageType: string | null = null;
+      if (fileToSend && previewToSend) {
+        // previewToSend is "data:image/png;base64,XXXX..."
+        const match = previewToSend.match(/^data:([^;]+);base64,(.+)$/);
+        if (match) {
+          imageType = match[1];
+          imageBase64 = match[2];
+        }
       }
+
+      res = await fetch("/api/admin/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: apiMessages, imageBase64, imageType }),
+      });
 
       if (res.status === 401) {
         router.push("/admin/login");

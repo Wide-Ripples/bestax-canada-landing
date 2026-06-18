@@ -72,7 +72,7 @@ export default async function Page() {
               <h1 className="text-[1.75rem] sm:text-[2.6rem] lg:text-[3rem] font-black text-[#1a1a1a] leading-[1.15] mb-3">
                 {content.hero.headlinePre}{" "}
                 <span className="text-[#E84319]">{content.hero.headlineAccent}</span>
-                {content.hero.headlinePost}
+                {" "}{content.hero.headlinePost}
               </h1>
               <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 shadow-sm">
                 <Stars />

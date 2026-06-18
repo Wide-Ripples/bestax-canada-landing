@@ -58,53 +58,35 @@ export async function POST(req: NextRequest) {
   const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
   try {
-    const contentType = req.headers.get("content-type") ?? "";
-    let messages: Anthropic.MessageParam[] = [];
-
-    if (contentType.includes("multipart/form-data")) {
-      const formData = await req.formData();
-      const messagesRaw = formData.get("messages") as string;
-      const file = formData.get("file") as File | null;
-      messages = JSON.parse(messagesRaw);
-
-      // Inject image into last user message if file provided
-      if (file) {
-        const arrayBuffer = await file.arrayBuffer();
-        const base64 = Buffer.from(arrayBuffer).toString("base64");
-        const mediaType = file.type as "image/jpeg" | "image/png" | "image/gif" | "image/webp";
-        const lastMsg = messages[messages.length - 1];
-        const textContent = typeof lastMsg.content === "string" ? lastMsg.content : "";
-        messages[messages.length - 1] = {
-          role: "user",
-          content: [
-            { type: "image", source: { type: "base64", media_type: mediaType, data: base64 } },
-            { type: "text", text: textContent || "Here is an image for reference." },
-          ],
-        };
-      }
-    } else {
-      const body = await req.json();
-      messages = body.messages;
-    }
+    const { messages, imageBase64, imageType } = await req.json() as {
+      messages: Anthropic.MessageParam[];
+      imageBase64?: string;
+      imageType?: string;
+    };
 
     const currentContent = await getContent();
-
-    // Inject current content into the last user message
-    const lastMsg = messages[messages.length - 1];
     const contextPrefix = `Current page content:\n${JSON.stringify(currentContent, null, 2)}\n\n---\n\n`;
+
+    // Build last user message — inject image and context prefix
+    const lastMsg = messages[messages.length - 1];
+    const lastText = typeof lastMsg.content === "string" ? lastMsg.content : "";
+
+    let lastContent: Anthropic.MessageParam["content"];
+    if (imageBase64 && imageType) {
+      const validType = (["image/jpeg","image/png","image/gif","image/webp"].includes(imageType)
+        ? imageType
+        : "image/jpeg") as "image/jpeg" | "image/png" | "image/gif" | "image/webp";
+      lastContent = [
+        { type: "image" as const, source: { type: "base64" as const, media_type: validType, data: imageBase64 } },
+        { type: "text" as const, text: contextPrefix + (lastText || "Here is a screenshot for reference. Please analyze it and help make changes.") },
+      ];
+    } else {
+      lastContent = contextPrefix + lastText;
+    }
 
     const contextualMessages: Anthropic.MessageParam[] = [
       ...messages.slice(0, -1),
-      {
-        role: "user",
-        content:
-          typeof lastMsg.content === "string"
-            ? contextPrefix + lastMsg.content
-            : [
-                ...(Array.isArray(lastMsg.content) ? lastMsg.content : []),
-                { type: "text" as const, text: contextPrefix },
-              ],
-      },
+      { role: "user", content: lastContent },
     ];
 
     const response = await anthropic.messages.create({
