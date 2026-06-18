@@ -5,7 +5,7 @@ import BookingEmbed from "@/components/BookingEmbed";
 import FaqAccordion from "@/components/FaqAccordion";
 import MobileBookingBar from "@/components/MobileBookingBar";
 import ScrollToTop from "@/components/ScrollToTop";
-import StickyCallbackButton from "@/components/StickyCallbackButton";
+import DesktopHeader from "@/components/DesktopHeader";
 import { getContent } from "@/lib/content";
 
 // Revalidate every 60s — page stays fast (SSG) but picks up Redis content changes quickly
@@ -51,14 +51,17 @@ export default async function Page() {
   const content = await getContent();
   return (
     <div className="bg-white text-[#333] pb-16 md:pb-0" style={{ overflowX: "clip" }}>
-      {/* Header only on mobile — desktop gets a sticky sidebar CTA instead */}
+      {/* Mobile header */}
       <div className="md:hidden">
         <StickyHeader phone={content.header.phone} ctaText={content.header.ctaText} ctaHref={content.header.ctaHref} />
       </div>
+      {/* Desktop header: logo + urgency + callback */}
+      <DesktopHeader urgencyStrip={content.hero.urgencyStrip} ctaHref={content.header.ctaHref} />
+
       <main>
 
-      {/* ── URGENCY STRIP ──────────────────────────────────── */}
-      <div className="bg-[#E84319] py-2.5 px-6 lg:px-10 text-center">
+      {/* ── URGENCY STRIP — mobile only (desktop shows it in the header) ── */}
+      <div className="md:hidden bg-[#E84319] py-2.5 px-6 text-center">
         <p className="text-white font-semibold text-sm">
           {content.hero.urgencyStrip}
         </p>
@@ -148,11 +151,12 @@ export default async function Page() {
           </div>
 
           {/* RIGHT: Booking card (sticky) */}
-          <div id="booking" className="lg:sticky lg:top-4 scroll-mt-4">
-            <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100">
+          <div id="booking" className="lg:sticky lg:top-[60px] scroll-mt-[60px]">
+            {/* max-h constrains the card to the viewport so it doesn't push below fold */}
+            <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-100 lg:flex lg:flex-col" style={{ maxHeight: "calc(100vh - 76px)" }}>
 
-              <div className="bg-[#E84319] px-5 py-4">
-                <h2 className="text-white font-bold text-base leading-snug mb-2">
+              <div className="bg-[#E84319] px-5 py-3 shrink-0">
+                <h2 className="text-white font-bold text-base leading-snug mb-1.5">
                   {content.booking.cardTitle}
                 </h2>
                 <div className="flex items-center justify-between flex-wrap gap-2">
@@ -166,7 +170,7 @@ export default async function Page() {
                 </div>
               </div>
 
-              <div className="bg-white">
+              <div className="bg-white lg:flex-1 lg:overflow-y-auto">
                 <BookingEmbed />
               </div>
 
@@ -288,13 +292,13 @@ export default async function Page() {
       </section>
 
       {/* ── FAQ ────────────────────────────────────────────── */}
-      <section className="w-full px-6 lg:px-10 py-10">
-        <div className="text-center mb-8">
+      <section className="w-full px-6 lg:px-10 py-6">
+        <div className="text-center mb-4">
           <h2 className="text-3xl sm:text-4xl font-black text-[#1a1a1a]">Frequently Asked Questions</h2>
-          <p className="text-gray-500 text-lg mt-2">Still have questions? These are the ones we hear most often.</p>
+          <p className="text-gray-500 text-lg mt-1">Still have questions? These are the ones we hear most often.</p>
         </div>
         <FaqAccordion faqs={content.faqs} />
-        <div className="text-center mt-10">
+        <div className="text-center mt-6">
           <Btn href="#booking">Book Free Consultation Now</Btn>
           <p className="text-sm text-gray-600 mt-3">
             Or call us:{" "}
@@ -330,7 +334,6 @@ export default async function Page() {
       </footer>
 
       <MobileBookingBar />
-      <StickyCallbackButton />
       <ScrollToTop />
     </div>
   );

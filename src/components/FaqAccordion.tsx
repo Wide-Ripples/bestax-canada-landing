@@ -12,7 +12,7 @@ export default function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
         <div key={i} className={`border-b border-gray-200 transition-colors ${open === i ? "bg-[#FFF9F5]" : ""}`}>
           <button
             onClick={() => setOpen(open === i ? null : i)}
-            className="w-full flex items-center justify-between px-6 py-6 text-left gap-6"
+            className="w-full flex items-center justify-between px-4 py-3 text-left gap-4"
             aria-expanded={open === i}
           >
             <span className="text-[17px] sm:text-lg font-bold text-[#1a1a1a] leading-snug">
@@ -27,7 +27,7 @@ export default function FaqAccordion({ faqs }: { faqs: FaqItem[] }) {
             </span>
           </button>
           {open === i && (
-            <div className="px-6 pb-7 text-gray-600 text-[15px] sm:text-base leading-relaxed">
+            <div className="px-4 pb-4 text-gray-600 text-[15px] sm:text-base leading-relaxed">
               {faq.a}
             </div>
           )}
