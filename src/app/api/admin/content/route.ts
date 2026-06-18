@@ -8,7 +8,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   const token = req.cookies.get("admin-token")?.value;
-  if (token !== process.env.ADMIN_PASSWORD) {
+  if (token !== (process.env.ADMIN_PASSWORD ?? "").trim()) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 

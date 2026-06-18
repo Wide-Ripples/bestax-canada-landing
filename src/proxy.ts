@@ -8,7 +8,8 @@ export function proxy(request: NextRequest) {
 
   if (pathname.startsWith("/admin")) {
     const token = request.cookies.get("admin-token")?.value;
-    if (!token || token !== process.env.ADMIN_PASSWORD) {
+    const envPassword = (process.env.ADMIN_PASSWORD ?? "").trim();
+    if (!token || token !== envPassword) {
       return NextResponse.redirect(new URL("/admin/login", request.url));
     }
   }

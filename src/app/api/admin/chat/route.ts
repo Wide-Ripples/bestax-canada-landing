@@ -26,7 +26,8 @@ Be concise and friendly. You're helping a non-technical team manage their market
 
 export async function POST(req: NextRequest) {
   const token = req.cookies.get("admin-token")?.value;
-  if (token !== process.env.ADMIN_PASSWORD) {
+  const envPassword = (process.env.ADMIN_PASSWORD ?? "").trim();
+  if (token !== envPassword) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
