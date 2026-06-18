@@ -17,7 +17,7 @@ export default function BookingEmbed() {
         window.Bookings.inlineEmbed({
           url: "https://appointments.bestax.ca/portal-embed#/inquiry",
           parent: "#inline-container",
-          height: "720px",
+          height: "580px",
           width: "100%",
         });
       } else {
@@ -39,7 +39,7 @@ export default function BookingEmbed() {
   }, []);
 
   return (
-    <div className="w-full" style={{ minHeight: 720 }}>
+    <div className="w-full" style={{ minHeight: 580 }}>
       <div id="inline-container" style={{ width: "100%" }} />
     </div>
   );

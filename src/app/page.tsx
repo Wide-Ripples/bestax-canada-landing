@@ -57,7 +57,7 @@ export default function Page() {
       {/* ══════════════════════════════════════════════════════
           HERO — full width, video left · booking right
       ══════════════════════════════════════════════════════ */}
-      <section className="w-full px-6 lg:px-10 pt-4 sm:pt-8 pb-10">
+      <section className="w-full px-6 lg:px-10 pt-4 sm:pt-8 pb-6">
 
         {/* Headline — centered text, generous width */}
         <div className="text-center mb-4 sm:mb-7">
@@ -125,14 +125,42 @@ export default function Page() {
               <p className="text-base font-bold text-green-700 mb-4">On the free call, Bestax will:</p>
               <ul className="space-y-4">
                 {[
-                  "Review your current accounting setup",
-                  "Spot compliance or reporting gaps before CRA does",
-                  "Highlight tax-saving opportunities you are missing",
-                  "Give you a concrete next-step action plan",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-2.5 text-[17px] font-medium text-gray-700">
-                    <Check />
-                    {item}
+                  {
+                    text: "Review your current accounting setup",
+                    icon: (
+                      <svg className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    text: "Spot compliance or reporting gaps before CRA does",
+                    icon: (
+                      <svg className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    text: "Highlight tax-saving opportunities you are missing",
+                    icon: (
+                      <svg className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      </svg>
+                    ),
+                  },
+                  {
+                    text: "Give you a concrete next-step action plan",
+                    icon: (
+                      <svg className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                      </svg>
+                    ),
+                  },
+                ].map(({ text, icon }) => (
+                  <li key={text} className="flex items-start gap-3 text-[17px] font-medium text-gray-700">
+                    {icon}
+                    {text}
                   </li>
                 ))}
               </ul>
@@ -182,11 +210,11 @@ export default function Page() {
       </section>
 
       {/* ── $427K BANNER ───────────────────────────────────── */}
-      <div className="bg-[#E84319] py-10 px-6 lg:px-10 text-center">
-        <p className="text-white/70 text-sm font-semibold mb-3 tracking-widest uppercase">Proven results for Canadian businesses</p>
-        <p className="text-[72px] sm:text-[90px] font-black text-white leading-none mb-2">$427,000</p>
+      <div className="bg-[#E84319] py-7 px-6 lg:px-10 text-center">
+        <p className="text-white/70 text-sm font-semibold mb-2 tracking-widest uppercase">Proven results for Canadian businesses</p>
+        <p className="text-[60px] sm:text-[80px] font-black text-white leading-none mb-2">$427,000</p>
         <p className="text-white text-lg sm:text-xl font-bold">in CRA penalties and interest avoided for our clients</p>
-        <p className="text-white/60 text-[15px] mt-2">Through accurate filings, proactive planning, and on-time submissions.</p>
+        <p className="text-white/60 text-[15px] mt-1">Through accurate filings, proactive planning, and on-time submissions.</p>
       </div>
 
       {/* ── TESTIMONIALS ───────────────────────────────────── */}
