@@ -5,6 +5,7 @@ import BookingEmbed from "@/components/BookingEmbed";
 import FaqAccordion from "@/components/FaqAccordion";
 import MobileBookingBar from "@/components/MobileBookingBar";
 import ScrollToTop from "@/components/ScrollToTop";
+import { getContent } from "@/lib/content";
 
 function Stars() {
   return (
@@ -42,7 +43,8 @@ function Btn({ href, children, red = false }: { href: string; children: React.Re
   );
 }
 
-export default function Page() {
+export default async function Page() {
+  const content = await getContent();
   return (
     <div className="bg-white text-[#333] pb-16 md:pb-0">
       <StickyHeader />
@@ -50,7 +52,7 @@ export default function Page() {
       {/* ── URGENCY STRIP ──────────────────────────────────── */}
       <div className="bg-[#E84319] py-2.5 px-6 lg:px-10 text-center">
         <p className="text-white font-semibold text-sm">
-          ⚡ Currently accepting new clients. Book your free 20-minute review today. Spots are limited.
+          {content.hero.urgencyStrip}
         </p>
       </div>
 
@@ -68,9 +70,9 @@ export default function Page() {
             {/* Headline — centered above the video */}
             <div className="text-center mb-1">
               <h1 className="text-[1.75rem] sm:text-[2.6rem] lg:text-[3rem] font-black text-[#1a1a1a] leading-[1.15] mb-3">
-                Stop Losing Money to Messy Books,{" "}
-                <span className="text-[#E84319]">Missed Deadlines</span>,{" "}
-                and CRA Surprises
+                {content.hero.headlinePre}{" "}
+                <span className="text-[#E84319]">{content.hero.headlineAccent}</span>
+                {content.hero.headlinePost}
               </h1>
               <div className="inline-flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-1.5 shadow-sm">
                 <Stars />
@@ -84,12 +86,7 @@ export default function Page() {
 
             {/* Stats */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {[
-                { num: "10+",    label: "Years of Experience" },
-                { num: "35+",    label: "Professionals" },
-                { num: "1,000+", label: "Clients Served" },
-                { num: "$427K",  label: "Penalties Avoided" },
-              ].map((s) => (
+              {content.stats.map((s) => (
                 <div key={s.label} className="bg-[#1a1a1a] rounded-xl py-4 text-center">
                   <div className="text-2xl sm:text-3xl font-black text-[#F5A623]">{s.num}</div>
                   <div className="text-gray-400 text-[13px] mt-1">{s.label}</div>
@@ -102,34 +99,16 @@ export default function Page() {
               <p className="text-base font-bold text-[#E84319] mb-4">This is for you if...</p>
               <ul className="grid sm:grid-cols-2 gap-4">
                 {[
-                  {
-                    text: "Books are behind or inconsistent",
-                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>,
-                  },
-                  {
-                    text: "Unsure about GST/HST filings",
-                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /><path strokeLinecap="round" strokeLinejoin="round" d="M10 9a2 2 0 114 0c0 1.5-2 2-2 4" /></svg>,
-                  },
-                  {
-                    text: "No clear monthly numbers",
-                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>,
-                  },
-                  {
-                    text: "Year-end is always stressful",
-                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 13v3m0 0h.01" /></svg>,
-                  },
-                  {
-                    text: "Accountant is reactive, not proactive",
-                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>,
-                  },
-                  {
-                    text: "Need one firm for everything",
-                    icon: <svg className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>,
-                  },
-                ].map(({ text, icon }) => (
-                  <li key={text} className="flex items-start gap-3 text-[17px] font-medium text-gray-700">
+                  <svg key="icon0" className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>,
+                  <svg key="icon1" className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /><path strokeLinecap="round" strokeLinejoin="round" d="M10 9a2 2 0 114 0c0 1.5-2 2-2 4" /></svg>,
+                  <svg key="icon2" className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>,
+                  <svg key="icon3" className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 13v3m0 0h.01" /></svg>,
+                  <svg key="icon4" className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>,
+                  <svg key="icon5" className="w-6 h-6 shrink-0 mt-0.5 text-[#E84319]" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>,
+                ].map((icon, i) => (
+                  <li key={i} className="flex items-start gap-3 text-[17px] font-medium text-gray-700">
                     {icon}
-                    {text}
+                    {content.painPoints[i]}
                   </li>
                 ))}
               </ul>
@@ -143,42 +122,14 @@ export default function Page() {
               <p className="text-base font-bold text-green-700 mb-4">On the free call, Bestax will:</p>
               <ul className="space-y-4">
                 {[
-                  {
-                    text: "Review your current accounting setup",
-                    icon: (
-                      <svg className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                    ),
-                  },
-                  {
-                    text: "Spot compliance or reporting gaps before CRA does",
-                    icon: (
-                      <svg className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                      </svg>
-                    ),
-                  },
-                  {
-                    text: "Highlight tax-saving opportunities you are missing",
-                    icon: (
-                      <svg className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                      </svg>
-                    ),
-                  },
-                  {
-                    text: "Give you a concrete next-step action plan",
-                    icon: (
-                      <svg className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                      </svg>
-                    ),
-                  },
-                ].map(({ text, icon }) => (
-                  <li key={text} className="flex items-start gap-3 text-[17px] font-medium text-gray-700">
+                  <svg key="cb0" className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>,
+                  <svg key="cb1" className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>,
+                  <svg key="cb2" className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" /></svg>,
+                  <svg key="cb3" className="w-6 h-6 shrink-0 mt-0.5 text-green-600" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>,
+                ].map((icon, i) => (
+                  <li key={i} className="flex items-start gap-3 text-[17px] font-medium text-gray-700">
                     {icon}
-                    {text}
+                    {content.callBenefits[i]}
                   </li>
                 ))}
               </ul>
@@ -229,10 +180,10 @@ export default function Page() {
 
       {/* ── $427K BANNER ───────────────────────────────────── */}
       <div className="bg-[#E84319] py-8 px-6 lg:px-10 text-center">
-        <p className="text-white/70 text-xs font-semibold mb-1 tracking-widest uppercase">Proven results for Canadian businesses</p>
-        <p className="text-[52px] sm:text-[68px] font-black text-white leading-none my-1">$427,000</p>
-        <p className="text-white text-base sm:text-lg font-bold">in CRA penalties and interest avoided for our clients</p>
-        <p className="text-white/60 text-[14px] mt-1">Through accurate filings, proactive planning, and on-time submissions.</p>
+        <p className="text-white/70 text-xs font-semibold mb-1 tracking-widest uppercase">{content.banner.label}</p>
+        <p className="text-[52px] sm:text-[68px] font-black text-white leading-none my-1">{content.banner.amount}</p>
+        <p className="text-white text-base sm:text-lg font-bold">{content.banner.subtitle}</p>
+        <p className="text-white/60 text-[14px] mt-1">{content.banner.footnote}</p>
       </div>
 
       {/* ── TESTIMONIALS ───────────────────────────────────── */}
@@ -272,12 +223,12 @@ export default function Page() {
 
       {/* ── DARK URGENCY CLOSER ────────────────────────────── */}
       <section className="bg-[#1a1a1a] py-10 px-6 lg:px-10 text-center">
-        <p className="text-gray-500 text-xs font-semibold mb-3 tracking-widest uppercase">Don&apos;t wait until there&apos;s a problem</p>
+        <p className="text-gray-500 text-xs font-semibold mb-3 tracking-widest uppercase">{content.darkSection.label}</p>
         <h2 className="text-4xl sm:text-5xl font-black text-white mb-4 leading-tight">
-          Most Business Owners Act Too Late.
+          {content.darkSection.headline}
         </h2>
         <p className="text-gray-300 text-lg max-w-2xl mx-auto mb-6">
-          By the time CRA sends a notice, penalties are already stacking up. A 20-minute call now can save you thousands later.
+          {content.darkSection.body}
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-3">
           <Btn href="#booking" red>Claim My Free Spot Now</Btn>
@@ -297,7 +248,7 @@ export default function Page() {
           <h2 className="text-3xl sm:text-4xl font-black text-[#1a1a1a]">Frequently Asked Questions</h2>
           <p className="text-gray-500 text-lg mt-2">Still have questions? These are the ones we hear most often.</p>
         </div>
-        <FaqAccordion />
+        <FaqAccordion faqs={content.faqs} />
         <div className="text-center mt-10">
           <Btn href="#booking">Book Free Consultation Now</Btn>
           <p className="text-sm text-gray-400 mt-3">
